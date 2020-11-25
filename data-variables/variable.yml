@@ -1,0 +1,55 @@
+---
+- name: first play 
+  hosts: all
+  vars:
+    web_pkg: httpd
+    firewall_pkg: firewalld
+    web_service: httpd
+    firewall_service: firewalld
+    python_pkg: python
+    rule: http
+  tasks:
+    - name: first task install packages
+      yum: 
+        name: 
+          - "{{ web_pkg }}"
+          - "{{ firewall_pkg }}"
+          - "{{ python_pkg }}"
+        state: latest 
+
+    - name: second task firewall service start 
+      service: 
+        name: "{{ firewall_service }}"
+        state: started
+        enabled: true 
+    - name: third task http service start 
+      service: 
+        name: "{{ web_service }}"
+        state: started
+        enabled: true 
+
+    - name: Four Web content is in place
+      copy: 
+        content: "Example web content" 
+        dest: /var/www/html/index.html 
+
+    - name: six task add http to firewalld
+      firewalld:
+        service: http
+        permanent: true
+        immediate: true
+        state: enabled 
+
+- name: Second play 
+  hosts: localhost
+  become: False 
+  tasks:
+    - name: ensure url 
+      uri:
+        url: http://192.168.56.101
+        status_code: 200
+      register: result_http
+    - debug: var=result_http
+    
+
+

@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Restricated Content"
+AuthUserFile /etc/httpd/.htpasswd
+Required valid-user

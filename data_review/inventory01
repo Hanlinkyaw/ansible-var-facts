@@ -1,0 +1,11 @@
+[webs]
+web01.home.lab 
+#web02.home.lab 
+
+[aps]
+#ap01.home.lab 
+#ap02.home.lab 
+
+[dbs]
+#db01.home.lab 
+#db02.home.lab 

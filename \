@@ -1,0 +1,10 @@
+---
+- name: remove http with register
+  hosts: all
+  tasks:
+    - name: remove httpd 
+      yum: 
+        name: httpd
+        state: absent
+        register: http_remove
+    

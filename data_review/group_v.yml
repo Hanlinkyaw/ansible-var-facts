@@ -1,0 +1,15 @@
+---
+- name: Group var test 
+  hosts: webs
+  tasks:
+    - name: Create user with group vars 
+      user:
+        name: "{{ user }}"
+        state: present
+
+    - name: Remove user with group vars
+      user:
+        name: "{{ user }}"
+        state: present 
+        remove: yes 
+

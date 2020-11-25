@@ -1,0 +1,19 @@
+---
+- name: First play
+  hosts: web01.home.lab
+  tasks:
+    - name: Create user with host_vars
+      user:
+        name: "{{ user }}"
+        state: present 
+
+    - name: Remove user also homedir 
+      user:
+        name: "{{ user }}"
+        state: absent 
+        remove: yes 
+
+    - name: check homedir hanlin's
+      command: ls -l /home/
+      
+
